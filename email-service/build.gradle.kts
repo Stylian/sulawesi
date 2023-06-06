@@ -20,6 +20,11 @@ dependencies {
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
+
+	testImplementation("org.testcontainers:testcontainers:1.18.3")
+
+	implementation("org.springframework.boot:spring-boot-starter-mail:3.1.0")
+
 }
 
 tasks.withType<KotlinCompile> {
