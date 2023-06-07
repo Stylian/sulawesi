@@ -8,12 +8,12 @@ import org.springframework.stereotype.Service
 import java.util.regex.Pattern
 
 @Service
-class EmailSenderServiceImpl  @Autowired constructor(
+class EmailSenderServiceImpl @Autowired constructor(
     val emailSender: JavaMailSender
-): EmailSenderService {
+) : EmailSenderService {
     override fun sendPriceAlert(email: String, priceAlert: PriceAlert) {
 
-        if(!validateEmail(email)) throw InvalidEmailException("the email: $email is invalid")
+        if (!validateEmail(email)) throw InvalidEmailException("the email: $email is invalid")
 
         println("ADMIN: email to be sent: $email")
         println("ADMIN: value of stock is ${priceAlert.direction} ${priceAlert.price}")
