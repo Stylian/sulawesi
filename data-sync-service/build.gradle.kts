@@ -22,7 +22,12 @@ dependencies {
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa:3.1.0")
+	implementation("org.springframework:spring-webflux:6.0.9")
+	implementation("mysql:mysql-connector-java:8.0.33")
+
 	testImplementation("org.testcontainers:testcontainers:1.18.3")
+	testImplementation("org.testcontainers:mongodb:1.18.3")
+	testImplementation("org.testcontainers:junit-jupiter:1.18.3")
 }
 
 tasks.withType<KotlinCompile> {

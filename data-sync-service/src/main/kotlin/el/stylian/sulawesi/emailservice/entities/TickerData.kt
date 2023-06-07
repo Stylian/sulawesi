@@ -1,22 +1,25 @@
 package el.stylian.sulawesi.emailservice.entities
 
-import jakarta.persistence.Column
-import jakarta.persistence.Entity
-import jakarta.persistence.GeneratedValue
-import jakarta.persistence.Id
+import jakarta.persistence.*
 import java.sql.Timestamp
+import java.time.LocalDate
+import java.util.Date
 
 @Entity
 data class TickerData(
-    @Column(unique=true)
-    val ticker: String,
-    val name: String,
-    val latestPrice: Double,
-    val lastChecked: Timestamp,
+    @ManyToOne(cascade = [CascadeType.PERSIST])
+    val ticker: Ticker,
+    val attribute: TickerAttribute,
+    val value: Double,
+    val date: Date,
     @Id
     @GeneratedValue
     var id: Long? = null
 ){
-    constructor(ticker: String) : this(ticker, "", 0.0, Timestamp(0))
+    constructor(
+        ticker: Ticker,
+        attribute: TickerAttribute,
+        value: Double
+    ) : this(ticker, attribute, value, Date()) // TODO date
 }
 

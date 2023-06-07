@@ -1,24 +1,23 @@
 package el.stylian.sulawesi.emailservice.services
 
+import el.stylian.sulawesi.emailservice.entities.TickerAttribute
+import el.stylian.sulawesi.emailservice.entities.TickerData
 import el.stylian.sulawesi.emailservice.repositories.TickerDataRepository
+import el.stylian.sulawesi.emailservice.repositories.TickerRepository
 import org.springframework.beans.factory.annotation.Autowired
 
 class DataSyncServiceImpl @Autowired constructor(
+    val tickerRepository: TickerRepository,
     val tickerDataRepository: TickerDataRepository,
     val tickerQuoteService: TickerQuoteService
 ): DataSyncService {
     override fun syncTickerPrices() {
 
-        for(tickerData in tickerDataRepository.findAll()) {
-            val priceQuote = tickerQuoteService.getPriceQuote(tickerData.ticker)
+        for(ticker in tickerRepository.findAll()) {
+            val priceQuote = tickerQuoteService.getPriceQuote(ticker.identifier)
 
-            // todo
-            // I actually need a separate ticker class and to hold all old prices.
-            // but need to fetch the latest
-            // need that to make charts
-            val newTickerData = tickerData.copy()
-//            newTickerData.latestPrice = priceQuote.price
-//            newTickerData.
+            val tickerData = TickerData(ticker, TickerAttribute.PRICE, priceQuote.price)
+            tickerDataRepository.save(tickerData) // TODO to make as batch
         }
 
     }
