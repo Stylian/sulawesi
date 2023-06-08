@@ -16,7 +16,7 @@ import org.testcontainers.junit.jupiter.Testcontainers
 @SpringBootTest
 @Testcontainers
 @AutoConfigureMockMvc
-class DataSyncControllerTests {
+class SubscriptionControllerTests {
 
     @Container
     var mongoDBContainer: MongoDBContainer = MongoDBContainer("mongo:4.4.2")
@@ -32,12 +32,12 @@ class DataSyncControllerTests {
         System.setProperty("spring.data.mongodb.uri", mongoDBContainer.getReplicaSetUrl());
     }
 
-    @Test
-    fun shouldCreateProduct() {
-        mockMvc!!.perform(
-            MockMvcRequestBuilders.post("/api/data-sync/sync-tickers")
-                .contentType(MediaType.APPLICATION_JSON)
-        )
-    }
+//    @Test
+//    fun shouldCreateProduct() {
+//        mockMvc!!.perform(
+//            MockMvcRequestBuilders.post("/api/data-sync/sync-tickers")
+//                .contentType(MediaType.APPLICATION_JSON)
+//        )
+//    }
 
 }

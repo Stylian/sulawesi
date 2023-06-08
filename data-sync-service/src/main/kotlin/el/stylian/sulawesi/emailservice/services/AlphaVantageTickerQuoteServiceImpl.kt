@@ -1,10 +1,10 @@
 package el.stylian.sulawesi.emailservice.services
 
-import el.stylian.sulawesi.emailservice.dtos.PriceQuote
+import el.stylian.sulawesi.emailservice.dtos.PriceAndVolumeQuote
 
 class AlphaVantageTickerQuoteServiceImpl : TickerQuoteService {
-    override fun getPriceQuote(ticker: String): PriceQuote {
+    override fun getPriceQuote(ticker: String): PriceAndVolumeQuote {
         TODO("Not yet implemented")
-        return PriceQuote(44.4, 234)
+        return PriceAndVolumeQuote(44.4, 234)
     }
 }

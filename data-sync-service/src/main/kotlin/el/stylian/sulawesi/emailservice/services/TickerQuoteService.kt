@@ -1,7 +1,7 @@
 package el.stylian.sulawesi.emailservice.services
 
-import el.stylian.sulawesi.emailservice.dtos.PriceQuote
+import el.stylian.sulawesi.emailservice.dtos.PriceAndVolumeQuote
 
 interface TickerQuoteService {
-    fun getPriceQuote(ticker: String): PriceQuote
+    fun getPriceQuote(ticker: String): PriceAndVolumeQuote
 }

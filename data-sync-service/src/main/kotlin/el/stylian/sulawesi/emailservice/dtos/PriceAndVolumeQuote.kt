@@ -1,6 +1,6 @@
 package el.stylian.sulawesi.emailservice.dtos
 
-data class PriceQuote(
+data class PriceAndVolumeQuote(
     val price: Double,
     val volume: Int
 )

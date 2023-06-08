@@ -1,16 +1,14 @@
 package el.stylian.sulawesi.emailservice.entities
 
 import jakarta.persistence.*
-import java.sql.Timestamp
-import java.time.LocalDate
 import java.util.Date
 
 @Entity
-data class TickerData(
+data class TickerPriceAndVolume(
     @ManyToOne(cascade = [CascadeType.PERSIST])
     val ticker: Ticker,
-    val attribute: TickerAttribute,
-    val value: Double,
+    val price: Double,
+    val volume: Int,
     val date: Date,
     @Id
     @GeneratedValue
@@ -18,8 +16,8 @@ data class TickerData(
 ){
     constructor(
         ticker: Ticker,
-        attribute: TickerAttribute,
-        value: Double
-    ) : this(ticker, attribute, value, Date()) // TODO date
+        price: Double,
+        volume: Int,
+    ) : this(ticker, price, volume, Date()) // TODO date
 }
 
