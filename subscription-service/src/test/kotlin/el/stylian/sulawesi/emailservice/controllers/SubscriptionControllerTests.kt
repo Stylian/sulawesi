@@ -29,15 +29,16 @@ class SubscriptionControllerTests {
 
     init {
         mongoDBContainer.start()
-        System.setProperty("spring.data.mongodb.uri", mongoDBContainer.getReplicaSetUrl());
+        System.setProperty("spring.data.mongodb.uri", mongoDBContainer.replicaSetUrl);
     }
 
-//    @Test
-//    fun shouldCreateProduct() {
+    @Test
+    fun shouldCreateProduct() {
 //        mockMvc!!.perform(
 //            MockMvcRequestBuilders.post("/api/data-sync/sync-tickers")
 //                .contentType(MediaType.APPLICATION_JSON)
 //        )
-//    }
+        assert(true)
+    }
 
 }

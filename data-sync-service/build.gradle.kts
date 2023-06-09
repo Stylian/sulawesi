@@ -25,6 +25,9 @@ dependencies {
 	implementation("org.springframework:spring-webflux:6.0.9")
 	implementation("mysql:mysql-connector-java:8.0.33")
 
+//	implementation("org.springframework.cloud:spring-cloud-starter-netflix-eureka-client:4.0.2")
+	testImplementation("com.h2database:h2:2.1.214")
+
 	testImplementation("org.testcontainers:testcontainers:1.18.3")
 	testImplementation("org.testcontainers:mongodb:1.18.3")
 	testImplementation("org.testcontainers:junit-jupiter:1.18.3")

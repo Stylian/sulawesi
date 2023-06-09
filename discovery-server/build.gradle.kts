@@ -21,10 +21,13 @@ dependencies {
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 
-//	implementation("org.springframework.cloud:spring-cloud-starter-netflix-eureka-client:4.0.2")
+	implementation("org.springframework.boot:spring-boot-starter-data-jpa:3.1.0")
+	implementation("org.springframework:spring-webflux:6.0.9")
+	implementation("mysql:mysql-connector-java:8.0.33")
 
-	implementation("org.springframework.boot:spring-boot-starter-mail:3.1.0")
+	implementation("org.springframework.cloud:spring-cloud-starter-netflix-eureka-server:4.0.2")
 
+	testImplementation("org.testcontainers:junit-jupiter:1.18.3")
 }
 
 tasks.withType<KotlinCompile> {

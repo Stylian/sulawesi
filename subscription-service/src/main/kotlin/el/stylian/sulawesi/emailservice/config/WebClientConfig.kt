@@ -1,4 +1,4 @@
-package config
+package el.stylian.sulawesi.emailservice.config
 
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
