@@ -1,13 +1,17 @@
 package el.stylian.sulawesi.emailservice.entities
 
+import jakarta.persistence.Column
 import jakarta.persistence.Entity
 import jakarta.persistence.GeneratedValue
 import jakarta.persistence.Id
 
 @Entity
 data class Ticker (
+    @Column(unique=true)
+    val identifier: String,
     @Id
     @GeneratedValue
-    var id: Long? = null,
-    val identifier: String
-)
+    var id: Long? = null
+) {
+    constructor(identifier: String) : this(identifier, -1L)
+}

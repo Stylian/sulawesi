@@ -4,7 +4,7 @@ import jakarta.persistence.*
 import java.util.Date
 
 @Entity
-data class TickerPriceAndVolume(
+data class TickerData(
     @ManyToOne(cascade = [CascadeType.PERSIST])
     val ticker: Ticker,
     val price: Double,

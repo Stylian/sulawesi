@@ -9,12 +9,12 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 @RequestMapping("/api/data-sync")
 class DataSyncController @Autowired constructor(
-//    val dataSyncService: DataSyncService
+    val dataSyncService: DataSyncService
 ) {
 
     @PostMapping("/sync-tickers")
     fun syncTickers(): String {
-//        dataSyncService.syncTickerPrices()
+        dataSyncService.syncTickerPrices()
         return "ticker prices have been synced"
     }
 
