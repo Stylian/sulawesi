@@ -4,23 +4,25 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import el.stylian.sulawesi.emailservice.entities.Ticker
 import el.stylian.sulawesi.emailservice.repositories.TickerDataRepository
 import el.stylian.sulawesi.emailservice.repositories.TickerRepository
-import el.stylian.sulawesi.emailservice.services.DataSyncService
+import org.junit.jupiter.api.AfterAll
+import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.Test
-import org.mockito.Mockito
+import org.junit.jupiter.api.TestInstance
+import org.junit.jupiter.api.TestInstance.Lifecycle
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc
 import org.springframework.boot.test.context.SpringBootTest
-import org.springframework.boot.test.mock.mockito.MockBean
 import org.springframework.http.MediaType
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders
-import org.testcontainers.containers.MongoDBContainer
+import org.testcontainers.containers.MySQLContainer
 import org.testcontainers.junit.jupiter.Container
 import org.testcontainers.junit.jupiter.Testcontainers
 
 
 @SpringBootTest
 @Testcontainers
+@TestInstance(Lifecycle.PER_CLASS)
 @AutoConfigureMockMvc
 class DataSyncControllerTests @Autowired constructor(
     val tickerRepository: TickerRepository,
@@ -28,7 +30,7 @@ class DataSyncControllerTests @Autowired constructor(
 ) {
 
     @Container
-    var mongoDBContainer: MongoDBContainer = MongoDBContainer("mongo:4.4.2")
+    var mySQLContainer = MySQLContainer("mysql:8.0.30")
 
     @Autowired
     private val mockMvc: MockMvc? = null
@@ -37,15 +39,17 @@ class DataSyncControllerTests @Autowired constructor(
     private val objectMapper: ObjectMapper? = null
 
     init {
-        mongoDBContainer.start()
-        System.setProperty("spring.data.mongodb.uri", mongoDBContainer.getReplicaSetUrl());
+        mySQLContainer.start()
+        System.setProperty("spring.datasource.url", mySQLContainer.getJdbcUrl());
+        System.setProperty("spring.jpa.properties.hibernate.dialect", "org.hibernate.dialect.MySQL8Dialect");
     }
-
-    @Test
-    fun shouldSyncTickers() {
-
+    @BeforeAll
+    fun init() {
         tickerRepository.save(Ticker("BABA"))
         tickerRepository.save(Ticker("TSLA"))
+    }
+    @Test
+    fun shouldSyncTickers() {
 
         mockMvc!!.perform(
             MockMvcRequestBuilders.post("/api/data-sync/sync-tickers")
@@ -53,7 +57,12 @@ class DataSyncControllerTests @Autowired constructor(
         )
 
         assert(tickerDataRepository.findByTickerIdentifier("BABA").isNotEmpty())
+    }
 
+    @AfterAll
+    fun tearDown() {
+        tickerDataRepository.deleteAll()
+        tickerRepository.deleteAll()
     }
 
 }

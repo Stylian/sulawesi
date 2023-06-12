@@ -9,9 +9,10 @@ import jakarta.persistence.Id
 data class Ticker (
     @Column(unique=true)
     val identifier: String,
+
     @Id
     @GeneratedValue
     var id: Long? = null
 ) {
-    constructor(identifier: String) : this(identifier, -1L)
+    constructor(identifier: String) : this(identifier,  -1L)
 }

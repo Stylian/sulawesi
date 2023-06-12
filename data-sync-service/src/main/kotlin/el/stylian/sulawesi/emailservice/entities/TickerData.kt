@@ -1,7 +1,7 @@
 package el.stylian.sulawesi.emailservice.entities
 
 import jakarta.persistence.*
-import java.util.Date
+import java.util.*
 
 @Entity
 data class TickerData(
