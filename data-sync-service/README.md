@@ -2,4 +2,3 @@
 This service updates the db on the latest ticker data when asked
 
 
-testcontainers uses the mail db ?

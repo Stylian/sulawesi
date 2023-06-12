@@ -5,7 +5,7 @@ import java.util.*
 
 @Entity
 data class TickerData(
-    @ManyToOne(cascade = [CascadeType.PERSIST])
+    @ManyToOne
     val ticker: Ticker,
     val price: Double,
     val volume: Int,

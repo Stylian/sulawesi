@@ -16,6 +16,7 @@ class AlphaVantageTickerQuoteService : TickerQuoteService {
 
         val url = URL("https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=$ticker&apikey=$api")
 
+        // to move to separate library project
         val connection = url.openConnection() as HttpURLConnection
         try {
             val content = connection.inputStream.bufferedReader().use(BufferedReader::readText)
@@ -26,8 +27,6 @@ class AlphaVantageTickerQuoteService : TickerQuoteService {
         }finally{
             connection.disconnect()
         }
-
-        return throw TickerQuoteServiceException()
     }
 
     private fun getPriceAndVolumeFromQuote(quote: String): PriceAndVolumeQuote {
