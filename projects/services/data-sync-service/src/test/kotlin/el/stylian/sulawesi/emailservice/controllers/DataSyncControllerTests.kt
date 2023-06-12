@@ -14,7 +14,6 @@ import org.testcontainers.containers.MySQLContainer
 import org.testcontainers.junit.jupiter.Container
 import org.testcontainers.junit.jupiter.Testcontainers
 
-
 @SpringBootTest
 @Testcontainers
 @TestInstance(Lifecycle.PER_CLASS)

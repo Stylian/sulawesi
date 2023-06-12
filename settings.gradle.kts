@@ -1,5 +1,7 @@
 rootProject.name = "sulawesi"
-include("email-service")
-include("data-sync-service")
-include("subscription-service")
-include("discovery-server")
+
+include("projects:services:email-service")
+include("projects:services:data-sync-service")
+include("projects:services:subscription-service")
+
+include("projects:discovery-server")
