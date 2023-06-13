@@ -3,7 +3,6 @@ package el.stylian.sulawesi.emailservice.services
 import el.stylian.sulawesi.emailservice.entities.TickerData
 import el.stylian.sulawesi.emailservice.repositories.TickerDataRepository
 import el.stylian.sulawesi.emailservice.repositories.TickerRepository
-import jakarta.transaction.Transactional
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 
