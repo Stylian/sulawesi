@@ -14,6 +14,7 @@ class DataSyncServiceImpl @Autowired constructor(
 ): DataSyncService {
     override fun syncTickerPrices() {
         var counter = 0
+//        LibraryUtils()
         for(ticker in tickerRepository.findAll()) {
             println(++counter)
             println(ticker)
