@@ -1,21 +1,21 @@
 package el.stylian.sulawesi.commons.chains
 
-abstract class AbstractLink : Chain {
+import java.util.*
 
-    private var functionToRun: () -> Unit = { }
-    protected constructor() {
-        chainline.add(this)
+abstract class AbstractLink {
+
+    var nextLink : AbstractLink? = null
+    operator fun plus(linkToAppend: AbstractLink) : AbstractLink {
+        getLast().nextLink = linkToAppend
+        return this
     }
-
-    constructor( functionToRun: () -> Unit ) : this() {
-        this.functionToRun = functionToRun
+    fun getLast(): AbstractLink {
+        return nextLink?.getLast() ?: this
     }
-
-    fun runIt() {
-        functionToRun.invoke()
+    fun run() {
         execute()
+        nextLink?.run()
     }
-
     abstract fun execute()
 
 }
