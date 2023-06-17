@@ -11,10 +11,16 @@ abstract class AbstractLink {
         return next()?.getLast() ?: this
     }
     fun run() {
+        build()
         execute()
         next()?.run()
     }
     open fun next() = nextLink
+
+    // this should redirect a fork chain if the condition changes
+    fun build() {
+        nextLink = next()
+    }
     abstract fun execute()
 
 }
