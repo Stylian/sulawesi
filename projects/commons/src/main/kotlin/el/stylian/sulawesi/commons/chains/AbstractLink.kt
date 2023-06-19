@@ -1,13 +1,27 @@
 package el.stylian.sulawesi.commons.chains
 
-abstract class AbstractLink {
+abstract class AbstractLink<T> {
 
-    private var nextLink : AbstractLink? = null
-    operator fun plus(linkToAppend: AbstractLink) : AbstractLink {
+    var nextLink : AbstractLink<T>? = null
+    var previousLink : AbstractLink<T>? = null
+
+    var  data : T? = null
+    operator fun plus(linkToAppend: AbstractLink<T>) : AbstractLink<T> {
         getLast().nextLink = linkToAppend
+        linkToAppend.previousLink = this
         return this
     }
-    fun getLast(): AbstractLink {
+    operator fun rangeTo(data: T) : AbstractLink<T> {
+        this.data = data
+        attachDataToFollowingLink()
+        return this
+    }
+    fun attachDataToFollowingLink() {
+        nextLink?.data = data
+        nextLink?.attachDataToFollowingLink()
+    }
+
+    fun getLast(): AbstractLink<T> {
         return next()?.getLast() ?: this
     }
     fun run() {
