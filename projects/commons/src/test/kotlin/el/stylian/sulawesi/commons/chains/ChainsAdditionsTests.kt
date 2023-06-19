@@ -8,10 +8,7 @@ class ChainsAdditionsTests {
     @Test
     fun testAddingLinks() {
         var counter = 0
-        val link1 = CommandLink { counter++ }
-        val link2 = CommandLink { counter +=3 }
-        val link3 = CommandLink { counter +=4 }
-        val chain = link1 + link2 + link3
+        val chain = CommandLink<Nothing> { counter++ } + CommandLink { counter +=3 } + CommandLink { counter +=4 }
         chain.run()
         assertEquals(8, counter)
     }
@@ -19,11 +16,8 @@ class ChainsAdditionsTests {
     @Test
     fun testAddingChainAndLinks() {
         var counter = 0
-        val link1 = CommandLink { counter++ }
-        val link2 = CommandLink { counter +=3 }
-        val link3 = CommandLink { counter +=4 }
-        val chain = link1 + link2 + link3
-        val link4 = CommandLink { counter-- }
+        val chain = CommandLink<Nothing> { counter++ } + CommandLink { counter +=3 } + CommandLink { counter +=4 }
+        val link4 = CommandLink<Nothing> { counter-- }
         val chain2 = chain + link4
         chain2.run()
         assertEquals(7, counter)
@@ -33,12 +27,9 @@ class ChainsAdditionsTests {
     @Test
     fun testAddingChains() {
         var counter = 0
-        val link1 = CommandLink { counter++ }
-        val link2 = CommandLink { counter +=3 }
-        val link3 = CommandLink { counter +=4 }
-        val chain1 = link1 + link2 + link3
-        val chain2 = CommandLink {counter--} + CommandLink { counter -= 2 }
-        (chain2+chain1).run()
+        val chain = CommandLink<Nothing> { counter++ } + CommandLink { counter +=3 } + CommandLink { counter +=4 }
+        val chain2 = CommandLink<Nothing> {counter--} + CommandLink { counter -= 2 }
+        (chain2+chain).run()
         assertEquals(5, counter)
     }
 

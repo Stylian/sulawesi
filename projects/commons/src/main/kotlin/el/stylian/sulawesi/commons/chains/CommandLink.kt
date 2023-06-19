@@ -1,6 +1,6 @@
 package el.stylian.sulawesi.commons.chains
 
-class CommandLink(private var functionToRun: () -> Unit) : AbstractLink<Nothing>() {
+class CommandLink<T>(private var functionToRun: () -> Unit) : AbstractLink<T>() {
 
     override fun execute() {
         functionToRun.invoke()

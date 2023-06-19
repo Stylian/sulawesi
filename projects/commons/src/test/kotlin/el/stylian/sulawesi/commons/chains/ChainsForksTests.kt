@@ -7,12 +7,9 @@ class ChainsForksTests {
     @Test
     fun testForkingCondition() {
         var counter = 0
-        val link1 = CommandLink { counter++ }
-        val link2 = CommandLink { counter +=3 }
-        val link3 = CommandLink { counter +=4 }
-        val chain1 = link1 + link2 + link3
-        val chainMain = CommandLink { counter-- } + CommandLink { counter -= 2 }
-        val chainAlter = CommandLink { counter -= 10 }
+        val chain1 = CommandLink<Nothing> { counter++ } + CommandLink { counter +=3 } + CommandLink { counter +=4 }
+        val chainMain = CommandLink<Nothing> { counter-- } + CommandLink { counter -= 2 }
+        val chainAlter = CommandLink<Nothing> { counter -= 10 }
 
         val chain = chain1 + ForkLink(false, chainMain, chainAlter)
         chain.run()
@@ -22,12 +19,9 @@ class ChainsForksTests {
     @Test
     fun testForkClosure() {
         var counter = 0
-        val link1 = CommandLink { counter++ }
-        val link2 = CommandLink { counter +=3 }
-        val link3 = CommandLink { counter +=4 }
-        val chain1 = link1 + link2 + link3
-        val chainMain = CommandLink { counter-- } + CommandLink { counter -= 2 }
-        val chainAlter = CommandLink { counter -= 10 }
+        val chain1 = CommandLink<Nothing> { counter++ } + CommandLink { counter +=3 } + CommandLink { counter +=4 }
+        val chainMain = CommandLink<Nothing> { counter-- } + CommandLink { counter -= 2 }
+        val chainAlter = CommandLink<Nothing> { counter -= 10 }
 
         val chain = chain1 + ForkLink({ true }, chainMain, chainAlter)
         chain.run()
@@ -36,12 +30,9 @@ class ChainsForksTests {
     @Test
     fun testForkConditionChange() {
         var counter = 0
-        val link1 = CommandLink { counter++ }
-        val link2 = CommandLink { counter +=3 }
-        val link3 = CommandLink { counter +=4 }
-        val chain1 = link1 + link2 + link3
-        val chainMain = CommandLink { counter-- } + CommandLink { counter -= 2 }
-        val chainAlter = CommandLink { counter -= 10 }
+        val chain1 = CommandLink<Nothing> { counter++ } + CommandLink { counter +=3 } + CommandLink { counter +=4 }
+        val chainMain = CommandLink<Nothing> { counter-- } + CommandLink { counter -= 2 }
+        val chainAlter = CommandLink<Nothing> { counter -= 10 }
 
         val conditionHolder = ConditionHolder(false)
         val fork = ForkLink({ conditionHolder.condition }, chainMain, chainAlter)
