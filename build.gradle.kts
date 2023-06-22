@@ -1,5 +1,9 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
+group = "el.stylian.sulawesi"
+version = "0.0.1-SNAPSHOT"
+java.sourceCompatibility = JavaVersion.VERSION_17
+
 
 val kotlinVersion = "1.8.21"
 plugins {
