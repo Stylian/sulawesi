@@ -19,7 +19,7 @@ java.sourceCompatibility = JavaVersion.VERSION_17
 
 dependencies {
 
-	implementation(project(":projects:commons"))
+//	implementation(project(":projects:commons"))
 
 	implementation("org.springframework.boot:spring-boot-starter-web")
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
