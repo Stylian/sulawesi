@@ -1,52 +1,33 @@
 package el.stylian.sulawesi.commons.chains
 
-abstract class AbstractLink<T> {
+abstract class AbstractLink<T> : Link<T> {
 
-    var nextLink : AbstractLink<T>? = null
-    var previousLink : AbstractLink<T>? = null
-    var fallbackLink : AbstractLink<T>? = null
+    override var nextLink: Link<T>? = null
+    override var previousLink: Link<T>? = null
+    override var fallbackLink: Link<T>? = null
 
-    var  data : T? = null
-    operator fun plus(linkToAppend: AbstractLink<T>) : AbstractLink<T> {
-        last().nextLink = linkToAppend
-        linkToAppend.previousLink = this
-        return this
-    }
-    operator fun div(altChain: AbstractLink<T>) : AbstractLink<T> {
-        this.fallbackLink = altChain
-        return this
-    }
-
-    operator fun rangeTo(data: T) : AbstractLink<T> {
-        this.data = data
-        attachDataToFollowingLinkChain()
-        return this
-    }
-    private fun attachDataToFollowingLinkChain() {
-        next()?.data = data
-        next()?.attachDataToFollowingLinkChain()
-    }
-
-    private fun lastFallbackLink(): AbstractLink<T>? {
-        return fallbackLink ?: previous()?.lastFallbackLink()
-    }
-
-    fun run() {
+    override var data: T? = null
+    override fun run() {
         try {
-            execute()
+            onRun()
             next()?.run()
-        }catch(e: FallbackException) {
+        } catch (e: FallbackException) {
             lastFallbackLink()?.run()
         }
     }
-    open fun first(): AbstractLink<T> {
+
+    open fun onRun() {}
+    override fun first(): Link<T> {
         return previous()?.first() ?: this
     }
-    open fun last(): AbstractLink<T> {
+
+    override fun last(): Link<T> {
         return next()?.last() ?: this
     }
-    open fun previous() = previousLink
-    open fun next() = nextLink
-    abstract fun execute()
 
+    override fun previous() = previousLink
+    override fun next() = nextLink
+    override fun lastFallbackLink(): Link<T>? {
+        return fallbackLink ?: previous()?.lastFallbackLink()
+    }
 }

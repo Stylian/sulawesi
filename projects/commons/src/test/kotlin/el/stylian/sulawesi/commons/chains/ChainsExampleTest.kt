@@ -8,25 +8,25 @@ class ChainsExampleTest {
     fun testExampleWithFallbackAndData() {
         var counter = 0
         val emailData = EmailDTO("John@papia.el", "")
-        val chain = PrepareEmailDataLink() + (SendEmailLink() / CommandLink { counter++ }) .. emailData
+        val chain = PrepareEmailDataLink() + (SendEmailLink() / CommandLink { counter++ })..emailData
         chain.run()
         assertEquals(1, counter)
     }
 }
 
 data class EmailDTO(var sender: String, var body: String)
-class PrepareEmailDataLink : AbstractLink<EmailDTO>() {
+class PrepareEmailDataLink : ExecutableLink<EmailDTO>() {
     override fun execute() {
-        assertEquals("John@papia.el" , data?.sender)
+        assertEquals("John@papia.el", data?.sender)
         data?.body = "the body"
     }
 
 }
 
-class SendEmailLink : AbstractLink<EmailDTO>() {
+class SendEmailLink : ExecutableLink<EmailDTO>() {
     override fun execute() {
-        assertEquals("John@papia.el" , data?.sender)
-        assertEquals("the body" , data?.body)
+        assertEquals("John@papia.el", data?.sender)
+        assertEquals("the body", data?.body)
         throw FallbackException("Something goes wrong here")
     }
 

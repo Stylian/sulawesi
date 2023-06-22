@@ -7,7 +7,7 @@ class ChainsForksTests {
     @Test
     fun testForkingCondition() {
         var counter = 0
-        val chain1 = CommandLink<Nothing> { counter++ } + CommandLink { counter +=3 } + CommandLink { counter +=4 }
+        val chain1 = CommandLink<Nothing> { counter++ } + CommandLink { counter += 3 } + CommandLink { counter += 4 }
         val chainMain = CommandLink<Nothing> { counter-- } + CommandLink { counter -= 2 }
         val chainAlter = CommandLink<Nothing> { counter -= 10 }
 
@@ -19,7 +19,7 @@ class ChainsForksTests {
     @Test
     fun testForkClosure() {
         var counter = 0
-        val chain1 = CommandLink<Nothing> { counter++ } + CommandLink { counter +=3 } + CommandLink { counter +=4 }
+        val chain1 = CommandLink<Nothing> { counter++ } + CommandLink { counter += 3 } + CommandLink { counter += 4 }
         val chainMain = CommandLink<Nothing> { counter-- } + CommandLink { counter -= 2 }
         val chainAlter = CommandLink<Nothing> { counter -= 10 }
 
@@ -27,10 +27,11 @@ class ChainsForksTests {
         chain.run()
         assertEquals(5, counter)
     }
+
     @Test
     fun testForkConditionChange() {
         var counter = 0
-        val chain1 = CommandLink<Nothing> { counter++ } + CommandLink { counter +=3 } + CommandLink { counter +=4 }
+        val chain1 = CommandLink<Nothing> { counter++ } + CommandLink { counter += 3 } + CommandLink { counter += 4 }
         val chainMain = CommandLink<Nothing> { counter-- } + CommandLink { counter -= 2 }
         val chainAlter = CommandLink<Nothing> { counter -= 10 }
 
@@ -43,5 +44,6 @@ class ChainsForksTests {
         assertEquals(5, counter)
 
     }
+
     data class ConditionHolder(var condition: Boolean)
 }
