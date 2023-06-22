@@ -4,15 +4,15 @@ group = "el.stylian.sulawesi"
 version = "0.0.1-SNAPSHOT"
 java.sourceCompatibility = JavaVersion.VERSION_17
 
-
 val kotlinVersion = "1.8.21"
 plugins {
     val kotlinVersion = "1.8.21"
     kotlin("jvm") version kotlinVersion
-}
 
-repositories {
-    mavenCentral()
+    kotlin("plugin.spring") version kotlinVersion
+    kotlin("plugin.allopen") version kotlinVersion
+    kotlin("plugin.noarg") version kotlinVersion
+    kotlin("plugin.jpa") version kotlinVersion
 }
 
 subprojects {

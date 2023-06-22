@@ -11,13 +11,8 @@ plugins {
 }
 
 dependencies {
-	implementation("org.springframework.boot:spring-boot-starter-web")
-	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
-	implementation("org.jetbrains.kotlin:kotlin-reflect")
-	testImplementation("org.springframework.boot:spring-boot-starter-test")
 
 	implementation("org.springframework.cloud:spring-cloud-starter-netflix-eureka-client:4.0.2")
-
 	implementation("org.springframework.boot:spring-boot-starter-mail:3.1.0")
 
 }
