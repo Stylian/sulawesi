@@ -8,7 +8,7 @@ abstract class AbstractLink<T> {
 
     var  data : T? = null
     operator fun plus(linkToAppend: AbstractLink<T>) : AbstractLink<T> {
-        getLast().nextLink = linkToAppend
+        last().nextLink = linkToAppend
         linkToAppend.previousLink = this
         return this
     }
@@ -23,26 +23,29 @@ abstract class AbstractLink<T> {
         return this
     }
     private fun attachDataToFollowingLinkChain() {
-        nextLink?.data = data
-        nextLink?.attachDataToFollowingLinkChain()
+        next()?.data = data
+        next()?.attachDataToFollowingLinkChain()
     }
 
-    private fun findLastFallbackLink(): AbstractLink<T>? {
-        return fallbackLink ?: previousLink?.findLastFallbackLink()
+    private fun lastFallbackLink(): AbstractLink<T>? {
+        return fallbackLink ?: previous()?.lastFallbackLink()
     }
 
-    fun getLast(): AbstractLink<T> {
-        return next()?.getLast() ?: this
-    }
     fun run() {
-        nextLink = next()
         try {
             execute()
             next()?.run()
         }catch(e: FallbackException) {
-            findLastFallbackLink()?.run()
+            lastFallbackLink()?.run()
         }
     }
+    open fun first(): AbstractLink<T> {
+        return previous()?.first() ?: this
+    }
+    open fun last(): AbstractLink<T> {
+        return next()?.last() ?: this
+    }
+    open fun previous() = previousLink
     open fun next() = nextLink
     abstract fun execute()
 
