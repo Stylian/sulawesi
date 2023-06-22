@@ -27,7 +27,7 @@ class SendEmailLink : AbstractLink<EmailDTO>() {
     override fun execute() {
         assertEquals("John@papia.el" , data?.sender)
         assertEquals("the body" , data?.body)
-        throw Exception("Something goes wrong here")
+        throw FallbackException("Something goes wrong here")
     }
 
 }

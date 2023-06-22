@@ -35,20 +35,15 @@ abstract class AbstractLink<T> {
         return next()?.getLast() ?: this
     }
     fun run() {
-        build()
+        nextLink = next()
         try {
             execute()
             next()?.run()
-        }catch(e: Exception) {
+        }catch(e: FallbackException) {
             findLastFallbackLink()?.run()
         }
     }
     open fun next() = nextLink
-
-    // this should redirect a fork chain if the condition changes
-    fun build() {
-        nextLink = next()
-    }
     abstract fun execute()
 
 }
