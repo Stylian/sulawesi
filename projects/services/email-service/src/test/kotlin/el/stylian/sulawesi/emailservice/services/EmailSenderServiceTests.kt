@@ -3,6 +3,8 @@ package el.stylian.sulawesi.emailservice.services
 import el.stylian.sulawesi.emailservice.dtos.Direction
 import el.stylian.sulawesi.emailservice.dtos.PriceAlert
 import el.stylian.sulawesi.emailservice.dtos.StockData
+import el.stylian.sulawesi.emailservice.services.EmailSenderServiceImpl
+import el.stylian.sulawesi.emailservice.services.InvalidEmailException
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 
@@ -21,6 +23,7 @@ class EmailSenderServiceTests {
     @Test
     fun goodEmail() {
         emailSenderService.sendPriceAlert("emailmewhenapp@gmail.com",
-            PriceAlert(10.0, StockData("BABA", "Alibaba"), Direction.BELOW))
+            PriceAlert(10.0, StockData("BABA", "Alibaba"), Direction.BELOW)
+        )
     }
 }
