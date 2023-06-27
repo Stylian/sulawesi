@@ -1,5 +1,6 @@
 rootProject.name = "sulawesi"
 
+include("projects:api-gateway")
 include("projects:discovery-server")
 include("projects:commons")
 
