@@ -18,10 +18,9 @@ class EmailSenderServiceImpl @Autowired constructor(
         println("ADMIN: email to be sent: $email")
         println("ADMIN: value of stock is ${priceAlert.direction} ${priceAlert.price}")
 
-        // TODO
         val message = SimpleMailMessage()
         message.from = "emailmewhenapp@gmail.com"
-//        message.to = arrayOf(email)
+        message.setTo(email)
         message.subject = "subject here"
         message.text = "${priceAlert.stock.ticker} is now ${priceAlert.direction} \$${priceAlert.price}"
 
