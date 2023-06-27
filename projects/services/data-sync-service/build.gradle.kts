@@ -10,7 +10,6 @@ plugins {
 }
 
 dependencies {
-
     implementation("org.springframework.cloud:spring-cloud-starter-netflix-eureka-client:4.0.2")
 
     testImplementation("org.testcontainers:testcontainers:1.18.3")
