@@ -1,4 +1,3 @@
-
 subprojects {
     dependencies {
         implementation(project(":projects:shared"))

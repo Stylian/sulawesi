@@ -4,7 +4,6 @@ group = "el.stylian.sulawesi"
 version = "0.0.1-SNAPSHOT"
 java.sourceCompatibility = JavaVersion.VERSION_17
 
-val kotlinVersion = "1.8.21"
 plugins {
     val kotlinVersion = "1.8.21"
     kotlin("jvm") version kotlinVersion
@@ -16,6 +15,7 @@ plugins {
 }
 
 subprojects {
+    val kotlinVersion = "1.8.21"
     apply(plugin = "org.jetbrains.kotlin.jvm")
 
     dependencies {
