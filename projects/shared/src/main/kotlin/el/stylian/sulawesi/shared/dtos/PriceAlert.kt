@@ -1,4 +1,4 @@
-package el.stylian.sulawesi.emailservice.dtos
+package el.stylian.sulawesi.shared.dtos
 
 data class PriceAlert(
     val price: Double,

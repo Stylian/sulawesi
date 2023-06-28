@@ -1,4 +1,4 @@
-package el.stylian.sulawesi.emailservice.dtos
+package el.stylian.sulawesi.shared.dtos
 
 enum class Direction {
     ABOVE,

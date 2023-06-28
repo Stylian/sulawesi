@@ -1,7 +1,7 @@
 package el.stylian.sulawesi.emailservice.controller
 
-import el.stylian.sulawesi.emailservice.dtos.EmailAlert
 import el.stylian.sulawesi.emailservice.services.EmailSenderService
+import el.stylian.sulawesi.shared.dtos.EmailAlert
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody

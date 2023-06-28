@@ -1,6 +1,7 @@
 
 subprojects {
     dependencies {
+        implementation(project(":projects:shared"))
         implementation(project(":projects:commons"))
 
         implementation("org.springframework.boot:spring-boot-starter-web")

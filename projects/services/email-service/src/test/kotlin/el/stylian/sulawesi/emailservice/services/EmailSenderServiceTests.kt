@@ -1,10 +1,8 @@
 package el.stylian.sulawesi.emailservice.services
 
-import el.stylian.sulawesi.emailservice.dtos.Direction
-import el.stylian.sulawesi.emailservice.dtos.PriceAlert
-import el.stylian.sulawesi.emailservice.dtos.StockData
-import el.stylian.sulawesi.emailservice.services.EmailSenderServiceImpl
-import el.stylian.sulawesi.emailservice.services.InvalidEmailException
+import el.stylian.sulawesi.shared.dtos.Direction
+import el.stylian.sulawesi.shared.dtos.PriceAlert
+import el.stylian.sulawesi.shared.dtos.StockData
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 

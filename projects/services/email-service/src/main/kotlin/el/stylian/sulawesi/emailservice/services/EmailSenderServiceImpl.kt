@@ -1,6 +1,6 @@
 package el.stylian.sulawesi.emailservice.services
 
-import el.stylian.sulawesi.emailservice.dtos.PriceAlert
+import el.stylian.sulawesi.shared.dtos.PriceAlert
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.mail.SimpleMailMessage
 import org.springframework.mail.javamail.JavaMailSender
