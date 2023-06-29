@@ -22,6 +22,7 @@ class SecurityConfig {
                     .anyExchange()
                     .authenticated()
             }
+            //maybe to fix the compiler error of deprecated method
             .oauth2ResourceServer(ServerHttpSecurity.OAuth2ResourceServerSpec::jwt)
         return serverHttpSecurity.build()
     }
