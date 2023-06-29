@@ -10,6 +10,8 @@ plugins {
 }
 
 dependencies {
+    implementation("org.springframework.boot:spring-boot-starter-oauth2-resource-server")
+    implementation("org.springframework.boot:spring-boot-starter-security")
     implementation("org.springframework.cloud:spring-cloud-starter-gateway:4.0.6")
     implementation("org.springframework.cloud:spring-cloud-starter-netflix-eureka-client:4.0.2")
 }
