@@ -1,16 +1,15 @@
 version: '3'
 services:
-  db:
+  data-sync-service:
     image: mysql:8.0
     restart: always
-    env_file: ./.env
     volumes:
-      - ./volumes/mysql_main_db:/var/lib/mysql
+      - ./volumes/mysql_db_data-sync-service:/var/lib/mysql
     environment:
-      - MYSQL_ROOT_PASSWORD=$MYSQLDB_ROOT_PASSWORD
-      - MYSQL_DATABASE=$MYSQLDB_DATABASE
+      - MYSQL_ROOT_PASSWORD=rootpassword
+      - MYSQL_DATABASE=data-sync-service
     ports:
-      - $MYSQLDB_LOCAL_PORT:$MYSQLDB_DOCKER_PORT
+      - "5431:3306"
     healthcheck:
       test: [ "CMD", "mysqladmin" ,"ping", "-h", "localhost" ]
       timeout: 10s

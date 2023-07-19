@@ -1,5 +1,5 @@
 # sulawesi
-
+the gradle wrapper requires java 17
 ### TODO
 
 currently keycloak doesn't work out of the box, configuration is needed as 
