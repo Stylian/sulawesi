@@ -11,4 +11,8 @@ plugins {
 
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-mail:3.1.0")
+
+    testImplementation("org.testcontainers:testcontainers:1.18.3")
+    testImplementation("org.testcontainers:mysql:1.18.3")
+    testImplementation("org.testcontainers:junit-jupiter:1.18.3")
 }

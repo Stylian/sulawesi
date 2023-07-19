@@ -1,5 +1,7 @@
 version: '3'
 services:
+
+  # Microservices databases
   data-sync-service:
     image: mysql:8.0
     restart: always
@@ -14,7 +16,35 @@ services:
       test: [ "CMD", "mysqladmin" ,"ping", "-h", "localhost" ]
       timeout: 10s
       retries: 10
-      
+  subscription-service:
+    image: mysql:8.0
+    restart: always
+    volumes:
+      - ./volumes/mysql_db_subscription-service:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=rootpassword
+      - MYSQL_DATABASE=subscription-service
+    ports:
+      - "5432:3306"
+    healthcheck:
+      test: [ "CMD", "mysqladmin" ,"ping", "-h", "localhost" ]
+      timeout: 10s
+      retries: 10
+  email-service:
+    image: mysql:8.0
+    restart: always
+    volumes:
+      - ./volumes/mysql_db_email-service:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=rootpassword
+      - MYSQL_DATABASE=email-service
+    ports:
+      - "5433:3306"
+    healthcheck:
+      test: [ "CMD", "mysqladmin" ,"ping", "-h", "localhost" ]
+      timeout: 10s
+      retries: 10
+
   ## Keycloak Config with Mysql database
   keycloak-mysql:
     container_name: keycloak-mysql
