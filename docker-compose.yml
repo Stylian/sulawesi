@@ -1,7 +1,7 @@
 version: '3'
 services:
 
-  # Microservices databases
+  # Microservices databases start
   data-sync-service:
     image: mysql:8.0
     restart: always
@@ -44,6 +44,7 @@ services:
       test: [ "CMD", "mysqladmin" ,"ping", "-h", "localhost" ]
       timeout: 10s
       retries: 10
+  # Microservices databases stop
 
   ## Keycloak Config with Mysql database
   keycloak-mysql:
