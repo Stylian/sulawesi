@@ -2,7 +2,7 @@ version: '3'
 services:
 
   # Microservices databases start
-  data-sync-service:
+  data-sync-service-db:
     image: mysql:8.0
     restart: always
     volumes:
@@ -16,7 +16,7 @@ services:
       test: [ "CMD", "mysqladmin" ,"ping", "-h", "localhost" ]
       timeout: 10s
       retries: 10
-  subscription-service:
+  subscription-service-db:
     image: mysql:8.0
     restart: always
     volumes:
@@ -30,7 +30,7 @@ services:
       test: [ "CMD", "mysqladmin" ,"ping", "-h", "localhost" ]
       timeout: 10s
       retries: 10
-  email-service:
+  email-service-db:
     image: mysql:8.0
     restart: always
     volumes:

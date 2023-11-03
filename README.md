@@ -1,5 +1,12 @@
 # sulawesi
 the gradle wrapper requires java 17
+
+view keycloak at http://localhost:8080/
+view eureka   at http://localhost:8761/
+
+needs before gradle build
+docker compose up -d 
+
 ### TODO
 
 currently keycloak doesn't work out of the box, configuration is needed as 
